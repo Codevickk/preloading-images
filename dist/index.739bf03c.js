@@ -532,69 +532,80 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"ebWYT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _preloadImages = require("./preload-images");
+var _preloadImagesDefault = parcelHelpers.interopDefault(_preloadImages);
+const images = document.querySelectorAll(".gallery__image");
+(0, _preloadImagesDefault.default)(images).then(()=>{
+    console.log("other page logic and aniamtions can start now");
+});
+
+},{"./preload-images":"8MEDl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8MEDl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
 var _utilsJs = require("./utils.js");
-// Preloader code
-const images = document.querySelectorAll(".gallery__image");
-const totalImages = images.length;
-let imagesLoaded = 0;
-const preloader = document.querySelector(".preloader");
-const preloaderLoader = document.querySelector(".preloader__loader");
-const counter = document.querySelector(".counter");
-const counterText = document.querySelector(".counter__text");
-images.forEach(async (image)=>{
-    await (0, _utilsJs.preloadImage)(image);
-    // Image has loaded
-    imagesLoaded++;
-    // Get the percentage of the images loaded
-    const percentage = Math.round(imagesLoaded / totalImages * 100);
-    const percentageFormer = Math.round((imagesLoaded - 1) / totalImages * 100);
-    // Animate the colored preloader heights to the percentage of what's loaded
-    (0, _gsap.gsap).to(preloaderLoader, {
-        duration: 1,
-        height: `${percentage}%`,
-        ease: "power4.inOut"
-    });
-    // Animate the value of the counter, such that it counts up from the previous percent to the new percent
-    const Cont = {
-        val: percentageFormer
-    };
-    (0, _gsap.gsap).to(Cont, {
-        val: percentage,
-        duration: 1,
-        onUpdate: function() {
-            counterText.innerHTML = Math.round(Cont.val);
-        }
-    });
-    // if percentage  === 100, it means all iamges are preloaded.
-    if (percentage === 100) {
-        const preloaderDoneTL = (0, _gsap.gsap).timeline({
-            defaults: {
+// Preloader function
+exports.default = preloadImages = (images)=>{
+    return new Promise((resolve, reject)=>{
+        const totalImages = images.length;
+        let imagesLoaded = 0;
+        const preloader = document.querySelector(".preloader");
+        const preloaderLoader = document.querySelector(".preloader__loader");
+        const counter = document.querySelector(".counter");
+        const counterText = document.querySelector(".counter__text");
+        images.forEach(async (image)=>{
+            await (0, _utilsJs.preloadImage)(image);
+            // Image has loaded
+            imagesLoaded++;
+            // Get the percentage of the images loaded
+            const percentage = Math.round(imagesLoaded / totalImages * 100);
+            const percentageFormer = Math.round((imagesLoaded - 1) / totalImages * 100);
+            // Animate the colored preloader heights to the percentage of what's loaded
+            (0, _gsap.gsap).to(preloaderLoader, {
+                duration: 1,
+                height: `${percentage}%`,
                 ease: "power4.inOut"
+            });
+            // Animate the value of the counter, such that it counts up from the previous percent to the new percent
+            const Cont = {
+                val: percentageFormer
+            };
+            (0, _gsap.gsap).to(Cont, {
+                val: percentage,
+                duration: 1,
+                onUpdate: function() {
+                    counterText.innerHTML = Math.round(Cont.val);
+                }
+            });
+            // if percentage  === 100, it means all iamges are preloaded.
+            if (percentage === 100) {
+                const preloaderDoneTL = (0, _gsap.gsap).timeline({
+                    defaults: {
+                        ease: "power4.inOut"
+                    }
+                });
+                preloaderDoneTL.to(counter, {
+                    duration: 0.2,
+                    opacity: 0,
+                    delay: 1
+                });
+                preloaderDoneTL.to(preloaderLoader, {
+                    y: "-100%",
+                    duration: 1.5
+                }, "-=0.1");
+                preloaderDoneTL.to(preloader, {
+                    y: "-100%",
+                    duration: 1.5,
+                    // Other logic or animations on the page asides the preloader can now start
+                    onComplete: resolve
+                }, "-=1.4");
             }
         });
-        preloaderDoneTL.to(counter, {
-            duration: 0.2,
-            opacity: 0,
-            delay: 1 // To make sure the last height (100%) is shown, before this animation starts
-        });
-        preloaderDoneTL.to(preloaderLoader, {
-            y: "-100%",
-            duration: 1.5
-        }, "-=0.1");
-        preloaderDoneTL.to(preloader, {
-            y: "-100%",
-            duration: 1.5,
-            // Other logic or animations on the page asides the preloader can now start
-            onComplete: ()=>pageInit()
-        }, "-=1.4");
-    }
-});
-const pageInit = ()=>{
-    console.log("All the intro animations are done now");
+    });
 };
 
-},{"gsap":"fPSuC","./utils.js":"72Dku"}],"fPSuC":[function(require,module,exports) {
+},{"gsap":"fPSuC","./utils.js":"72Dku","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPSuC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gsap", ()=>gsapWithCSS);
