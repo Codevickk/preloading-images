@@ -1,3 +1,67 @@
+@font-face {
+  font-family: Cremona;
+  src: url("Cremona-400.a0fad569.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Cremona, sans-serif;
+}
+
+.container {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.preloader {
+  height: 100vh;
+  width: 100%;
+  background: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.preloader__loader {
+  width: 100%;
+  height: 0%;
+  background: #e3d0be;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.counter {
+  color: #fff;
+  z-index: 1;
+  text-align: right;
+  font-size: 12rem;
+  display: inline-block;
+  position: absolute;
+  bottom: 6rem;
+  right: 13.2rem;
+}
+
+.gallery__image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery__image:not(:last-child) {
+  margin-bottom: 3rem;
+}
 
 /*# sourceMappingURL=index.b10d73a7.css.map */

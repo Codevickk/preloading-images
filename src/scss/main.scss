@@ -1,0 +1,77 @@
+// Import font
+@font-face {
+  font-family: "Cremona";
+  src: url("../fonts/Cremona-400.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+// Variables
+$black: #000000;
+$yellow: #e3d0be;
+
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Cremona", sans-serif;
+}
+
+.container {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+// Preloader styles
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+
+  background: $black;
+
+  &__loader {
+    background: $yellow;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 0%;
+  }
+}
+
+.counter {
+  display: inline-block;
+  color: white;
+  position: absolute;
+  bottom: 6rem;
+  right: 13.2rem;
+  font-size: 12rem;
+  z-index: 1;
+  text-align: right;
+}
+
+// Gallery styles
+.gallery {
+  &__image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+  }
+}
