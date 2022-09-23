@@ -1,9 +1,14 @@
 {
   "name": "preloading-images",
   "version": "1.0.0",
-  "main": "index.js",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "rm -rf .parcel-cache && parcel src/index.html",
+    "build": "parcel build"
+  },
   "license": "MIT",
   "devDependencies": {
+    "@parcel/transformer-sass": "2.7.0",
     "parcel": "^2.7.0"
   }
 }
