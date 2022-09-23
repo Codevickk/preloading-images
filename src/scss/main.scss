@@ -56,11 +56,17 @@ body {
   display: inline-block;
   color: white;
   position: absolute;
-  bottom: 6rem;
-  right: 13.2rem;
-  font-size: 12rem;
+  bottom: 3rem;
+  right: 4rem;
+  font-size: 7rem;
   z-index: 1;
   text-align: right;
+
+  @media (min-width: 76.8rem) {
+    bottom: 6rem;
+    right: 13.2rem;
+    font-size: 12rem;
+  }
 }
 
 // Gallery styles
