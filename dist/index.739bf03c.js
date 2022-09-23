@@ -546,7 +546,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
 var _utilsJs = require("./utils.js");
 // Preloader function
-exports.default = preloadImages = (images)=>{
+const preloadImages = (images)=>{
     return new Promise((resolve, reject)=>{
         const totalImages = images.length;
         let imagesLoaded = 0;
@@ -604,6 +604,7 @@ exports.default = preloadImages = (images)=>{
         });
     });
 };
+exports.default = preloadImages;
 
 },{"gsap":"fPSuC","./utils.js":"72Dku","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPSuC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

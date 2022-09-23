@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { preloadImage } from "./utils.js";
 
 // Preloader function
-export default preloadImages = (images) => {
+const preloadImages = (images) => {
   return new Promise((resolve, reject) => {
     const totalImages = images.length;
     let imagesLoaded = 0;
@@ -76,3 +76,5 @@ export default preloadImages = (images) => {
     });
   });
 };
+
+export default preloadImages;
