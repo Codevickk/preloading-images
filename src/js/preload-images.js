@@ -2,6 +2,9 @@ import { gsap } from "gsap";
 import { preloadImage } from "./utils.js";
 
 // Preloader function
+
+// This function uses a particular kind of animations for the preloaders, but you can replace them with yours
+
 const preloadImages = (images) => {
   return new Promise((resolve, reject) => {
     const totalImages = images.length;
