@@ -23,25 +23,22 @@ const preloadImages = (images) => {
 
       // Get the percentage of the images loaded
       const percentage = Math.round((imagesLoaded / totalImages) * 100);
-      const percentageFormer = Math.round(
-        ((imagesLoaded - 1) / totalImages) * 100
-      );
-
-      // Animate the colored preloader heights to the percentage of what's loaded
-      gsap.to(preloaderLoader, {
-        duration: 1,
-        height: `${percentage}%`,
-        ease: "power4.inOut",
-      });
 
       // Animate the value of the counter, such that it counts up from the previous percent to the new percent
-      const Cont = { val: percentageFormer };
+      const Cont = { val: parseInt(counterText.innerHTML) };
       gsap.to(Cont, {
         val: percentage,
         duration: 1,
         onUpdate: function () {
           counterText.innerHTML = Math.round(Cont.val);
         },
+      });
+
+      // Animate the colored preloader heights to the percentage of what's loaded
+      gsap.to(preloaderLoader, {
+        duration: 1,
+        height: `${percentage}%`,
+        ease: "power4.inOut",
       });
 
       // if percentage  === 100, it means all iamges are preloaded.

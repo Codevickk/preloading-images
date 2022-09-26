@@ -546,6 +546,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
 var _utilsJs = require("./utils.js");
 // Preloader function
+// This function uses a particular kind of animations for the preloaders, but you can replace them with yours
 const preloadImages = (images)=>{
     return new Promise((resolve, reject)=>{
         const totalImages = images.length;
@@ -560,16 +561,9 @@ const preloadImages = (images)=>{
             imagesLoaded++;
             // Get the percentage of the images loaded
             const percentage = Math.round(imagesLoaded / totalImages * 100);
-            const percentageFormer = Math.round((imagesLoaded - 1) / totalImages * 100);
-            // Animate the colored preloader heights to the percentage of what's loaded
-            (0, _gsap.gsap).to(preloaderLoader, {
-                duration: 1,
-                height: `${percentage}%`,
-                ease: "power4.inOut"
-            });
             // Animate the value of the counter, such that it counts up from the previous percent to the new percent
             const Cont = {
-                val: percentageFormer
+                val: parseInt(counterText.innerHTML)
             };
             (0, _gsap.gsap).to(Cont, {
                 val: percentage,
@@ -577,6 +571,12 @@ const preloadImages = (images)=>{
                 onUpdate: function() {
                     counterText.innerHTML = Math.round(Cont.val);
                 }
+            });
+            // Animate the colored preloader heights to the percentage of what's loaded
+            (0, _gsap.gsap).to(preloaderLoader, {
+                duration: 1,
+                height: `${percentage}%`,
+                ease: "power4.inOut"
             });
             // if percentage  === 100, it means all iamges are preloaded.
             if (percentage === 100) {
